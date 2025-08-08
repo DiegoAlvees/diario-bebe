@@ -3,14 +3,16 @@ import { useState } from "react";
 type TipoAtividade = 'Amamentação' | 'Fralda' | 'Banho' | 'Sono';
 
 interface JanelaConfirmacaoProps {
-
-
     open: boolean;
     onClose: () => void;
-    onConfirmar: (dados: { tipo: TipoAtividade; valor: string | { inicio: string; fim: string }; horaRegistro: string }) => void;
+    onConfirmar: (dados: { 
+        tipo: TipoAtividade; 
+        valor: string | { inicio: string; fim: string } | { duracao: string; mamilo: string } | { tipo: string }; 
+        horaRegistro: string;
+        dataCompleta?: string;
+    }) => void;
     tipo: TipoAtividade;
 }
-
 
 const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
     open,
@@ -20,11 +22,12 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
 }) => {
 
     const [duracao, setDuracao] = useState<string>('');
+    const [mamilo, setMamilo] = useState<string>('');
+    const [tipoFralda, setTipoFralda] = useState<string>('');
     const [horaInicio, setHoraInicio] = useState<string>('');
     const [horaFim, setHoraFim] = useState<string>('');
 
     if (!open) return null;
-
 
     const agora = new Date().toLocaleTimeString([], {
         hour: '2-digit',
@@ -32,13 +35,16 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
     });
 
     const confirmar = () => {
-const horaRegistro = new Date().toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
+        const horaRegistro = new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+        
         let valor;
         if (tipo === 'Amamentação') {
-            valor = duracao;
+            valor = { duracao, mamilo };
+        } else if (tipo === 'Fralda') {
+            valor = { tipo: tipoFralda };
         } else if (tipo === 'Sono') {
             valor = { inicio: horaInicio, fim: horaFim };
         } else {
@@ -47,6 +53,13 @@ const horaRegistro = new Date().toLocaleTimeString([], {
 
         onConfirmar({ tipo, valor, horaRegistro});
         onClose();
+        
+        // Limpar campos após confirmar
+        setDuracao('');
+        setMamilo('');
+        setTipoFralda('');
+        setHoraInicio('');
+        setHoraFim('');
     };
 
     return (
@@ -54,7 +67,6 @@ const horaRegistro = new Date().toLocaleTimeString([], {
             {/* Fundo desfocado */}
             <div
                 className="fixed inset-0 bg-transparent backdrop-blur-sm z-40"
-
             ></div>
 
             {/* Modal */}
@@ -66,12 +78,95 @@ const horaRegistro = new Date().toLocaleTimeString([], {
                     </h2>
 
                     {tipo === 'Amamentação' && (
-                        <input
-                            type="text"
-                            placeholder="Duração (min)"
-                            onChange={(e) => setDuracao(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md px-4 py-3 text-blue-950 focus:outline-none focus:ring-2 focus:text-blue-950"
-                        />
+                        <div className="space-y-4">
+                            <input
+                                type="text"
+                                placeholder="Duração (min)"
+                                value={duracao}
+                                onChange={(e) => setDuracao(e.target.value)}
+                                className="w-full border border-gray-300 rounded-md px-4 py-3 text-blue-950 focus:outline-none focus:ring-2 focus:text-blue-950"
+                            />
+                            
+                            <div className="space-y-2">
+                                <label className="block text-blue-950 font-semibold">Mamilo:</label>
+                                <div className="flex gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => setMamilo('Esquerdo')}
+                                        className={`flex-1 py-2 px-4 rounded-md border transition ${
+                                            mamilo === 'Esquerdo' 
+                                                ? 'bg-blue-500 text-white border-blue-500' 
+                                                : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
+                                        }`}
+                                    >
+                                        Esquerdo
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setMamilo('Direito')}
+                                        className={`flex-1 py-2 px-4 rounded-md border transition ${
+                                            mamilo === 'Direito' 
+                                                ? 'bg-blue-500 text-white border-blue-500' 
+                                                : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
+                                        }`}
+                                    >
+                                        Direito
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setMamilo('Ambos')}
+                                        className={`flex-1 py-2 px-4 rounded-md border transition ${
+                                            mamilo === 'Ambos' 
+                                                ? 'bg-blue-500 text-white border-blue-500' 
+                                                : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
+                                        }`}
+                                    >
+                                        Ambos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {tipo === 'Fralda' && (
+                        <div className="space-y-2">
+                            <label className="block text-blue-950 font-semibold">Tipo:</label>
+                            <div className="flex gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setTipoFralda('Xixi')}
+                                    className={`flex-1 py-2 px-4 rounded-md border transition ${
+                                        tipoFralda === 'Xixi' 
+                                            ? 'bg-blue-500 text-white border-blue-500' 
+                                            : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
+                                    }`}
+                                >
+                                    Xixi
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setTipoFralda('Coco')}
+                                    className={`flex-1 py-2 px-4 rounded-md border transition ${
+                                        tipoFralda === 'Coco' 
+                                            ? 'bg-blue-500 text-white border-blue-500' 
+                                            : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
+                                    }`}
+                                >
+                                    Coco
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setTipoFralda('Ambos')}
+                                    className={`flex-1 py-2 px-4 rounded-md border transition ${
+                                        tipoFralda === 'Ambos' 
+                                            ? 'bg-blue-500 text-white border-blue-500' 
+                                            : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
+                                    }`}
+                                >
+                                    Ambos
+                                </button>
+                            </div>
+                        </div>
                     )}
 
                     {tipo === 'Sono' && (
@@ -91,7 +186,7 @@ const horaRegistro = new Date().toLocaleTimeString([], {
                         </div>
                     )}
 
-                    {(tipo === 'Fralda' || tipo === 'Banho') && (
+                    {tipo === 'Banho' && (
                         <p className="text-blue-950 text-lg">
                             Horário atual: <strong>{agora}</strong>
                         </p>
