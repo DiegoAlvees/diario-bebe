@@ -112,9 +112,9 @@ function Atividades() {
                             {atividades.map((atividade, index) => (
                                 <li key={index} className="text-blue-950 text-sm">
                                     {atividade.tipo === 'Amamentação'
-                                        ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
+                                        ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
                                             <div className='flex gap-3 items-center'>
-                                                <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
+                                                <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                     <Droplets />
                                                 </div>
                                                 <div>
@@ -125,13 +125,13 @@ function Atividades() {
                                             </div>
                                             <div >
 
-                                                <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                <span className=' text-[13px]  bg-blue-100 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                             </div>
                                         </div>
                                         : atividade.tipo === 'Fralda'
-                                            ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
+                                            ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
                                                 <div className='flex gap-3 items-center'>
-                                                    <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
+                                                    <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                         <Baby />
                                                     </div>
                                                     <div>
@@ -141,13 +141,13 @@ function Atividades() {
                                                 </div>
                                                 <div >
 
-                                                    <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                    <span className=' text-[13px]  bg-blue-100 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                                 </div>
                                             </div>
                                             : atividade.tipo === 'Banho'
-                                                ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
+                                                ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
                                                     <div className='flex gap-3 items-center'>
-                                                        <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
+                                                        <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                             <Bath />
                                                         </div>
                                                         <div>
@@ -157,13 +157,13 @@ function Atividades() {
                                                     </div>
                                                     <div >
 
-                                                        <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                        <span className=' text-[13px]  bg-blue-100 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                                     </div>
                                                 </div>
                                                 : atividade.tipo === 'Sono' && typeof atividade.valor === 'object'
-                                                    ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
+                                                    ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
                                                         <div className='flex gap-3 items-center'>
-                                                            <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
+                                                            <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                                 <Moon />
                                                             </div>
                                                             <div>
@@ -175,7 +175,7 @@ function Atividades() {
                                                         </div>
                                                         <div >
 
-                                                            <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                            <span className=' text-[13px]  bg-blue-100 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                                         </div>
                                                     </div>
                                                     : ''
