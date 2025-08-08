@@ -100,8 +100,8 @@ function Atividades() {
 
                 {atividades.length === 0 ? (<div>
                     <div className='h-45 items-center flex justify-center flex-col gap-2'>
-                        < Clock4 className='text-gray-300' size={50} />
-                        <p className='text-gray-400'>Nenhuma atividade registrada ainda</p>
+                        < Clock4 className='text-blue-100' size={50} />
+                        <p className='text-blue-200'>Nenhuma atividade registrada ainda</p>
                     </div>
 
                 </div>
@@ -110,9 +110,9 @@ function Atividades() {
                     <div className='min-h-45 overflow-y-auto mb-1'>
                         <ul className="mt-4 space-y-2">
                             {atividades.map((atividade, index) => (
-                                <li key={index} className="text-blue-950 text-sm">
+                                <li key={index} className="text-blue-900 text-sm">
                                     {atividade.tipo === 'Amamentação'
-                                        ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
+                                        ? <div className='flex justify-between items-center border-blue-100 border rounded-xl px-4 py-1 '>
                                             <div className='flex gap-3 items-center'>
                                                 <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                     <Droplets />
@@ -129,7 +129,7 @@ function Atividades() {
                                             </div>
                                         </div>
                                         : atividade.tipo === 'Fralda'
-                                            ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
+                                            ? <div className='flex justify-between items-center border-blue-100 border rounded-xl px-4 py-1 '>
                                                 <div className='flex gap-3 items-center'>
                                                     <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                         <Baby />
@@ -145,7 +145,7 @@ function Atividades() {
                                                 </div>
                                             </div>
                                             : atividade.tipo === 'Banho'
-                                                ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
+                                                ? <div className='flex justify-between items-center border-blue-100 border rounded-xl px-4 py-1 '>
                                                     <div className='flex gap-3 items-center'>
                                                         <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                             <Bath />
@@ -161,7 +161,7 @@ function Atividades() {
                                                     </div>
                                                 </div>
                                                 : atividade.tipo === 'Sono' && typeof atividade.valor === 'object'
-                                                    ? <div className='flex justify-between items-center border-blue-100 border-2 rounded-xl px-4 py-1 '>
+                                                    ? <div className='flex justify-between items-center border-blue-100 border rounded-xl px-4 py-1 '>
                                                         <div className='flex gap-3 items-center'>
                                                             <div className='bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full'>
                                                                 <Moon />
