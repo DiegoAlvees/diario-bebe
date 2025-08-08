@@ -61,7 +61,7 @@ const horaRegistro = new Date().toLocaleTimeString([], {
             <div className="fixed inset-0 flex items-center justify-center z-50 p-5">
                 <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6 space-y-6">
 
-                    <h2 className="text-2xl font-extrabold text-[rgb(54,51,137)]">
+                    <h2 className="text-2xl font-extrabold text-blue-950">
                         {`Registrar ${tipo}`}
                     </h2>
 
@@ -70,7 +70,7 @@ const horaRegistro = new Date().toLocaleTimeString([], {
                             type="text"
                             placeholder="Duração (min)"
                             onChange={(e) => setDuracao(e.target.value)}
-                            className="w-full border border-purple-300 rounded-md px-4 py-3 text-[rgb(54,51,137)] focus:outline-none focus:ring-2 focus:text-[rgb(54,51,137)]"
+                            className="w-full border border-gray-300 rounded-md px-4 py-3 text-blue-950 focus:outline-none focus:ring-2 focus:text-blue-950"
                         />
                     )}
 
@@ -80,19 +80,19 @@ const horaRegistro = new Date().toLocaleTimeString([], {
                                 type="time"
                                 value={horaInicio}
                                 onChange={(e) => setHoraInicio(e.target.value)}
-                                className="flex-1 border border-purple-300 rounded-md px-4 py-3 text-[rgb(54,51,137)] focus:outline-none focus:ring-2 focus:text-[rgb(54,51,137)]"
+                                className="flex-1 border border-gray-300 rounded-md px-4 py-3 text-blue-950 focus:outline-none focus:ring-2 focus:text-blue-950"
                             />
                             <input
                                 type="time"
                                 value={horaFim}
                                 onChange={(e) => setHoraFim(e.target.value)}
-                                className="flex-1 border border-purple-300 rounded-md px-4 py-3 text-[rgb(54,51,137)] focus:outline-none focus:ring-2 focus:text-[rgb(54,51,137)]"
+                                className="flex-1 border border-gray-300 rounded-md px-4 py-3 text-blue-950 focus:outline-none focus:ring-2 focus:text-blue-950"
                             />
                         </div>
                     )}
 
                     {(tipo === 'Fralda' || tipo === 'Banho') && (
-                        <p className="text-[rgb(54,51,137)] text-lg">
+                        <p className="text-blue-950 text-lg">
                             Horário atual: <strong>{agora}</strong>
                         </p>
                     )}
@@ -100,14 +100,14 @@ const horaRegistro = new Date().toLocaleTimeString([], {
                     <div className="flex justify-end gap-4">
                         <button
                             onClick={onClose}
-                            className="bg-purple-100 text-[rgb(54,51,137)] font-semibold rounded-md px-6 py-2 hover:bg-purple-200 transition"
+                            className="bg-gray-100 text-blue-950 font-semibold rounded-md px-6 py-2 hover:bg-purple-200 transition"
                         >
                             Cancelar
                         </button>
 
                         <button
                             onClick={confirmar}
-                            className="bg-gradient-to-r from-[rgb(129,179,228)] to-[rgb(119,115,255)] text-white font-bold rounded-md px-6 py-2 hover:bg-purple-800 transition"
+                            className="bg-gradient-to-r from-blue-400 to-blue-500 text-white font-bold rounded-md px-6 py-2 hover:bg-purple-800 transition"
                         >
                             Confirmar
                         </button>

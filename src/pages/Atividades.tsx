@@ -54,15 +54,15 @@ function Atividades() {
                     <Baby className='text-purple-50' size={38} />
                 </div>
                 <div>
-                    <p className='text-xl font-bold text-[rgb(54,51,137)]'>Noah</p>
-                    <p className='text-[rgb(54,51,137)]'>{`${dias} dias`}</p>
+                    <p className='text-xl font-bold text-blue-950'>Noah</p>
+                    <p className='text-blue-950'>{`${dias} dias`}</p>
                 </div>
             </header>
 
             {/* section de atividades */}
 
             <section className='px-3 py-3 mt-10 bg-white rounded-lg shadow-lg h-auto]'>
-                <p className='text-[22px] text-[rgb(54,51,137)] pt-2'>+ Ações Rápidas</p>
+                <p className='text-[22px] text-blue-950 pt-2'>+ Ações Rápidas</p>
                 <div className='grid grid-cols-2 gap-3 mt-4'>
 
                     <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-400 to-blue-500'>
@@ -96,12 +96,12 @@ function Atividades() {
             {/* section de registros de atividades */}
 
             <section className='px-3 py-3 mt-10 bg-white rounded-lg shadow-lg overflow-y-auto'>
-                <p className='text-[22px] font flex gap-2 items-center text-[rgb(54,51,137)] pt-2'><ClockFading /> Atividades recentes</p>
+                <p className='text-[22px] font flex gap-2 items-center text-blue-950 pt-2'><ClockFading /> Atividades recentes</p>
 
                 {atividades.length === 0 ? (<div>
                     <div className='h-45 items-center flex justify-center flex-col gap-2'>
-                        < Clock4 className='text-[rgb(182,180,236)]' size={50} />
-                        <p className='text-[rgb(182,180,236)]'>Nenhuma atividade registrada ainda</p>
+                        < Clock4 className='text-gray-300' size={50} />
+                        <p className='text-gray-400'>Nenhuma atividade registrada ainda</p>
                     </div>
 
                 </div>
@@ -110,28 +110,28 @@ function Atividades() {
                     <div className='min-h-45 overflow-y-auto mb-1'>
                         <ul className="mt-4 space-y-2">
                             {atividades.map((atividade, index) => (
-                                <li key={index} className="text-[rgb(54,51,137)] text-sm">
+                                <li key={index} className="text-blue-950 text-sm">
                                     {atividade.tipo === 'Amamentação'
-                                        ? <div className='flex justify-between items-center border-[rgb(204,204,231)] border-2 rounded-xl px-4 py-1 text-[rgb(54,51,137)]'>
+                                        ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
                                             <div className='flex gap-3 items-center'>
-                                                <div className='bg-[rgb(204,204,231)] w-10 h-10 flex items-center justify-center rounded-full'>
+                                                <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
                                                     <Droplets />
                                                 </div>
                                                 <div>
                                                     <p className='text-[17px] '>{atividade.tipo}</p>
-                                                    <p className='text-[13px] text-[rgb(125,123,184)]'>{`${atividade.valor} minutos`}</p>
+                                                    <p className='text-[13px] text-gray-500'>{`${atividade.valor} minutos`}</p>
 
                                                 </div>
                                             </div>
                                             <div >
 
-                                                <span className=' text-[13px]  bg-[rgb(204,204,231)] p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                             </div>
                                         </div>
                                         : atividade.tipo === 'Fralda'
-                                            ? <div className='flex justify-between items-center border-[rgb(204,204,231)] border-2 rounded-xl px-4 py-1 text-[rgb(54,51,137)]'>
+                                            ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
                                                 <div className='flex gap-3 items-center'>
-                                                    <div className='bg-[rgb(204,204,231)] w-10 h-10 flex items-center justify-center rounded-full'>
+                                                    <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
                                                         <Baby />
                                                     </div>
                                                     <div>
@@ -141,13 +141,13 @@ function Atividades() {
                                                 </div>
                                                 <div >
 
-                                                    <span className=' text-[13px]  bg-[rgb(204,204,231)] p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                    <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                                 </div>
                                             </div>
                                             : atividade.tipo === 'Banho'
-                                                ? <div className='flex justify-between items-center border-[rgb(204,204,231)] border-2 rounded-xl px-4 py-1 text-[rgb(54,51,137)]'>
+                                                ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
                                                     <div className='flex gap-3 items-center'>
-                                                        <div className='bg-[rgb(204,204,231)] w-10 h-10 flex items-center justify-center rounded-full'>
+                                                        <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
                                                             <Bath />
                                                         </div>
                                                         <div>
@@ -157,25 +157,25 @@ function Atividades() {
                                                     </div>
                                                     <div >
 
-                                                        <span className=' text-[13px]  bg-[rgb(204,204,231)] p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                        <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                                     </div>
                                                 </div>
                                                 : atividade.tipo === 'Sono' && typeof atividade.valor === 'object'
-                                                    ? <div className='flex justify-between items-center border-[rgb(204,204,231)] border-2 rounded-xl px-4 py-1 text-[rgb(54,51,137)]'>
+                                                    ? <div className='flex justify-between items-center border-gray-200 border-2 rounded-xl px-4 py-1 '>
                                                         <div className='flex gap-3 items-center'>
-                                                            <div className='bg-[rgb(204,204,231)] w-10 h-10 flex items-center justify-center rounded-full'>
+                                                            <div className='bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full'>
                                                                 <Moon />
                                                             </div>
                                                             <div>
                                                                 <p className='text-[17px] '>{atividade.tipo}</p>
-                                                                <p className='text-[13px] text-[rgb(125,123,184)]'>{`${atividade.valor.inicio} - ${atividade.valor.fim}`}</p>
+                                                                <p className='text-[13px] text-gray-500'>{`${atividade.valor.inicio} - ${atividade.valor.fim}`}</p>
 
                                                                 
                                                             </div>
                                                         </div>
                                                         <div >
 
-                                                            <span className=' text-[13px]  bg-[rgb(204,204,231)] p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
+                                                            <span className=' text-[13px]  bg-gray-200 p-1 px-1.5 rounded-xl'>{atividade.horaRegistro}</span>
                                                         </div>
                                                     </div>
                                                     : ''
