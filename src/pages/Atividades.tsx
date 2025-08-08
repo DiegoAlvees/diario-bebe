@@ -50,7 +50,7 @@ function Atividades() {
     return (
         <main className="bg-purple-50 min-h-screen px-5 pb-5">
             <header className="flex items-center gap-2 pt-10">
-                <div className="flex justify-center items-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600  rounded-[100%] bg-amber-50">
+                <div className="flex justify-center items-center w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-500  rounded-[100%] bg-amber-50">
                     <Baby className='text-purple-50' size={38} />
                 </div>
                 <div>
@@ -65,25 +65,25 @@ function Atividades() {
                 <p className='text-[22px] text-[rgb(54,51,137)] pt-2'>+ Ações Rápidas</p>
                 <div className='grid grid-cols-2 gap-3 mt-4'>
 
-                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-500 to-blue-600'>
+                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-400 to-blue-500'>
                         <button onClick={() => abrirJanela("Amamentação")} className='flex flex-col items-center justify-center h-full w-full active:scale-85 transition-transform'>
                             <Droplets color='white' size={20} />
                             <p className='text-white'>Amamentação</p>
                         </button>
                     </div>
-                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-600 to-blue-500'>
+                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-500 to-blue-400'>
                         <button onClick={() => abrirJanela("Fralda")} className='flex flex-col items-center justify-center h-full w-full active:scale-85 transition-transform'>
                             <Baby color='white' size={20} />
                             <p className='text-white'>Fralda</p>
                         </button>
                     </div>
-                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-600 to-blue-500'>
+                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-500 to-blue-400'>
                         <button onClick={() => abrirJanela("Banho")} className='flex flex-col items-center justify-center h-full w-full active:scale-85 transition-transform'>
                             <Bath color='white' size={20} />
                             <p className='text-white'>Banho</p>
                         </button>
                     </div>
-                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-500 to-blue-600'>
+                    <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-400 to-blue-500'>
                         <button onClick={() => abrirJanela("Sono")} className='flex flex-col items-center justify-center h-full w-full active:scale-85 transition-transform'>
                             <Moon color='white' size={20} />
                             <p className='text-white'>Sono</p>
