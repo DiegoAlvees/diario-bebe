@@ -1,6 +1,10 @@
 function Vacinas() {
     return (
-        <div><h1>Essa é a rota de Vacinas</h1></div>
-    )}
+        <div>
+            <p>Essa é a rota de vacinas</p>
+        </div>
+    );
 
-    export default Vacinas;
+}
+
+export default Vacinas;
