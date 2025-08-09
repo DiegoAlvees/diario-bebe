@@ -186,11 +186,7 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
                         </div>
                     )}
 
-                    {tipo === 'Banho' && (
-                        <p className="text-blue-950 text-lg">
-                            Horário atual: <strong>{agora}</strong>
-                        </p>
-                    )}
+                    
 
                     <div className="flex justify-end gap-4">
                         <button
