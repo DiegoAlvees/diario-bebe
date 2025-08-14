@@ -1,13 +1,14 @@
 import { useState } from "react";
+import Cronometro from "./Cronometro"
 
 type TipoAtividade = 'Amamentação' | 'Fralda' | 'Banho' | 'Sono';
 
 interface JanelaConfirmacaoProps {
     open: boolean;
     onClose: () => void;
-    onConfirmar: (dados: { 
-        tipo: TipoAtividade; 
-        valor: string | { inicio: string; fim: string } | { duracao: string; mamilo: string } | { tipo: string }; 
+    onConfirmar: (dados: {
+        tipo: TipoAtividade;
+        valor: string | { inicio: string; fim: string } | { duracao: string; mamilo: string } | { tipo: string };
         horaRegistro: string;
         dataCompleta?: string;
     }) => void;
@@ -39,7 +40,7 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
             hour: '2-digit',
             minute: '2-digit',
         });
-        
+
         let valor;
         if (tipo === 'Amamentação') {
             valor = { duracao, mamilo };
@@ -51,9 +52,9 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
             valor = agora;
         }
 
-        onConfirmar({ tipo, valor, horaRegistro});
+        onConfirmar({ tipo, valor, horaRegistro });
         onClose();
-        
+
         // Limpar campos após confirmar
         setDuracao('');
         setMamilo('');
@@ -79,6 +80,10 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
 
                     {tipo === 'Amamentação' && (
                         <div className="space-y-4">
+                            <Cronometro
+                                onUpdate={(tempo) => setDuracao(tempo)}
+                                onPause={(tempo) => setDuracao(tempo)}
+                            />
                             <input
                                 type="text"
                                 placeholder="Duração (min)"
@@ -86,40 +91,37 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
                                 onChange={(e) => setDuracao(e.target.value)}
                                 className="w-full border border-gray-300 rounded-md px-4 py-3 text-blue-950 focus:outline-none focus:ring-2 focus:text-blue-950"
                             />
-                            
+
                             <div className="space-y-2">
                                 <label className="block text-blue-950 font-semibold">Mamilo:</label>
                                 <div className="flex gap-2">
                                     <button
                                         type="button"
                                         onClick={() => setMamilo('Esquerdo')}
-                                        className={`flex-1 py-2 px-4 rounded-md border transition ${
-                                            mamilo === 'Esquerdo' 
-                                                ? 'bg-blue-500 text-white border-blue-500' 
+                                        className={`flex-1 py-2 px-4 rounded-md border transition ${mamilo === 'Esquerdo'
+                                                ? 'bg-blue-500 text-white border-blue-500'
                                                 : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
-                                        }`}
+                                            }`}
                                     >
                                         Esquerdo
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => setMamilo('Direito')}
-                                        className={`flex-1 py-2 px-4 rounded-md border transition ${
-                                            mamilo === 'Direito' 
-                                                ? 'bg-blue-500 text-white border-blue-500' 
+                                        className={`flex-1 py-2 px-4 rounded-md border transition ${mamilo === 'Direito'
+                                                ? 'bg-blue-500 text-white border-blue-500'
                                                 : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
-                                        }`}
+                                            }`}
                                     >
                                         Direito
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => setMamilo('Ambos')}
-                                        className={`flex-1 py-2 px-4 rounded-md border transition ${
-                                            mamilo === 'Ambos' 
-                                                ? 'bg-blue-500 text-white border-blue-500' 
+                                        className={`flex-1 py-2 px-4 rounded-md border transition ${mamilo === 'Ambos'
+                                                ? 'bg-blue-500 text-white border-blue-500'
                                                 : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
-                                        }`}
+                                            }`}
                                     >
                                         Ambos
                                     </button>
@@ -135,33 +137,30 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
                                 <button
                                     type="button"
                                     onClick={() => setTipoFralda('Xixi')}
-                                    className={`flex-1 py-2 px-4 rounded-md border transition ${
-                                        tipoFralda === 'Xixi' 
-                                            ? 'bg-blue-500 text-white border-blue-500' 
+                                    className={`flex-1 py-2 px-4 rounded-md border transition ${tipoFralda === 'Xixi'
+                                            ? 'bg-blue-500 text-white border-blue-500'
                                             : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
-                                    }`}
+                                        }`}
                                 >
                                     Xixi
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setTipoFralda('Coco')}
-                                    className={`flex-1 py-2 px-4 rounded-md border transition ${
-                                        tipoFralda === 'Coco' 
-                                            ? 'bg-blue-500 text-white border-blue-500' 
+                                    className={`flex-1 py-2 px-4 rounded-md border transition ${tipoFralda === 'Coco'
+                                            ? 'bg-blue-500 text-white border-blue-500'
                                             : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
-                                    }`}
+                                        }`}
                                 >
                                     Coco
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setTipoFralda('Ambos')}
-                                    className={`flex-1 py-2 px-4 rounded-md border transition ${
-                                        tipoFralda === 'Ambos' 
-                                            ? 'bg-blue-500 text-white border-blue-500' 
+                                    className={`flex-1 py-2 px-4 rounded-md border transition ${tipoFralda === 'Ambos'
+                                            ? 'bg-blue-500 text-white border-blue-500'
                                             : 'bg-gray-100 text-blue-950 border-gray-300 hover:bg-gray-200'
-                                    }`}
+                                        }`}
                                 >
                                     Ambos
                                 </button>
@@ -186,7 +185,7 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
                         </div>
                     )}
 
-                    
+
 
                     <div className="flex justify-end gap-4">
                         <button
