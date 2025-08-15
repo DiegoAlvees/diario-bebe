@@ -89,7 +89,7 @@ function Atividades() {
     }, [dataNascimento]);
 
     return (
-        <main className="bg-blue-50 min-h-screen px-5 pb-5">
+        <main className="bg-blue-50 min-h-screen px-5 pb-20">
             <header className="flex items-center gap-2 pt-10">
                 <div className="flex justify-center items-center w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-500  rounded-[100%] bg-amber-50">
                     <Baby className='text-purple-50' size={38} />
