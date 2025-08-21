@@ -29,6 +29,15 @@ function Atividades() {
         }
     };
 
+    // Função para verificar se uma atividade é de hoje
+    const ehHoje = (dataCompleta: string) => {
+        const dataAtividade = new Date(dataCompleta);
+        const hoje = new Date();
+        return dataAtividade.toDateString() === hoje.toDateString();
+    };
+
+    const atividadesHoje = atividades.filter(atividade => ehHoje(atividade.dataCompleta));
+
     // const limparHistorico = () => {
     //     if (confirm('Tem certeza que deseja limpar todo o histórico de atividades?')) {
     //         setAtividades([]);
@@ -138,7 +147,7 @@ function Atividades() {
 
                 </div>
 
-                {atividades.length === 0 ? (
+                {atividadesHoje.length === 0 ? (
                     <div>
                         <div className='h-45 items-center flex justify-center flex-col gap-2'>
                             <Clock4 className='text-blue-100' size={50} />
@@ -148,7 +157,7 @@ function Atividades() {
                 ) : (
                     <div className='min-h-45 overflow-y-auto mb-1'>
                         <ul className="mt-4 space-y-2">
-                            {atividades.slice().reverse().map((atividade, index) => (
+                            {atividadesHoje.slice().reverse().map((atividade, index) => (
                                 <li key={index} className="text-blue-900 text-sm">
                                     {atividade.tipo === 'Amamentação' && typeof atividade.valor === 'object' && 'duracao' in atividade.valor
                                         ? <div className='relative flex justify-between items-end border-blue-100 border rounded-xl px-4 py-1 '>

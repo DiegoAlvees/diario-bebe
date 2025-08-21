@@ -1,4 +1,4 @@
-import { Home, Medal, Syringe,  User } from 'lucide-react';
+import { Home, History, Syringe,  User } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 export default function BottomNav() {
@@ -46,8 +46,8 @@ export default function BottomNav() {
               }`
             }
           >
-            <Medal size={22} />
-            <span className="text-xs">Conquistas</span>
+            <History size={22} />
+            <span className="text-xs">Histórico</span>
           </NavLink>
         </li>
         <li className="h-full w-full">

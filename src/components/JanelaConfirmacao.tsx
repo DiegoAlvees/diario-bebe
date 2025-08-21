@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Cronometro from "./Cronometro"
+// import Cronometro from "./Cronometro"
 
 type TipoAtividade = 'Amamentação' | 'Fralda' | 'Banho' | 'Sono';
 
@@ -80,10 +80,10 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
 
                     {tipo === 'Amamentação' && (
                         <div className="space-y-4">
-                            <Cronometro
+                            {/* <Cronometro
                                 onUpdate={(tempo) => setDuracao(tempo)}
                                 onPause={(tempo) => setDuracao(tempo)}
-                            />
+                            /> */}
                             <input
                                 type="text"
                                 placeholder="Duração (min)"
