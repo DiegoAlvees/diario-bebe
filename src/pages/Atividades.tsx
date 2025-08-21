@@ -150,8 +150,8 @@ function Atividades() {
                 {atividadesHoje.length === 0 ? (
                     <div>
                         <div className='h-45 items-center flex justify-center flex-col gap-2'>
-                            <Clock4 className='text-blue-100' size={50} />
-                            <p className='text-blue-200'>Nenhuma atividade registrada ainda</p>
+                            <Clock4 className='text-gray-400 opacity-30' size={50} />
+                            <p className='text-gray-400 opacity-30'>Nenhuma atividade hoje</p>
                         </div>
                     </div>
                 ) : (
