@@ -1,4 +1,4 @@
-import { Baby, Droplets, Bath, Moon, CircleX, Calendar, Trash2 } from 'lucide-react';
+import { Baby, Droplets, Bath, Moon, CircleX, Calendar, History, ListFilterPlus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 type Atividade = {
@@ -24,12 +24,7 @@ function HistoricoCompleto() {
         }
     };
 
-    const limparHistorico = () => {
-        if (confirm('Tem certeza que deseja limpar todo o histórico de atividades? Esta ação não pode ser desfeita.')) {
-            setAtividades([]);
-            localStorage.removeItem('atividades-noah');
-        }
-    };
+    
 
     const formatarData = (dataCompleta: string) => {
         const data = new Date(dataCompleta);
@@ -105,7 +100,9 @@ function HistoricoCompleto() {
         <main className="bg-blue-50 min-h-screen px-5 pb-20">
             <header className="flex items-center justify-between pt-10">
                 <div className="flex items-center gap-2">
-                    
+                    <div className="flex justify-center items-center w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full">
+                    <History className='text-white' size={38} />
+                </div>
                     
                     <div>
                         <p className='text-xl font-bold text-blue-950'>Histórico Completo</p>
@@ -113,18 +110,16 @@ function HistoricoCompleto() {
                     </div>
                 </div>
 
-                <button 
-                    onClick={limparHistorico}
-                    className="flex items-center gap-1 bg-red-100 text-red-700 px-3 py-2 rounded-lg hover:bg-red-200 transition-colors"
-                >
-                    <Trash2 size={16} />
-                    <span className='text-sm'>Limpar</span>
-                </button>
+                
             </header>
 
             {/* Filtros */}
             <section className='px-3 py-3 mt-6 bg-white rounded-lg shadow-lg'>
-                <p className='text-lg text-blue-950 mb-3'>Filtrar por tipo</p>
+                <div className='flex items-center gap-2'>
+
+                <ListFilterPlus size={22} className=' text-blue-950 mb-3' />
+                <p className='text-[22px] text-blue-950 mb-3'>Filtrar por tipo</p>
+                </div>
                 <div className='flex gap-2 flex-wrap'>
                     {["Todos", "Amamentação", "Fralda", "Banho", "Sono"].map((tipo) => (
                         <button
