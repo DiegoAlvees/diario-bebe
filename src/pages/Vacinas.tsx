@@ -1,6 +1,8 @@
 import { Syringe, Calendar, CheckCircle, Clock, CircleX, CalendarDays, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ModalVacina from '../components/JanelaVacina';
+import { calcularDiasDeVida } from '../utils/calcularIdade';
+
 
 interface Vacina {
     nome: string;
@@ -14,21 +16,29 @@ interface Vacina {
 }
 
 function Vacinas() {
-    const dataNascimento = '2025-07-19';
+const dadosSalvos = JSON.parse(localStorage.getItem('dados-bebe') || '{}');
+
+    const nomeBebe = dadosSalvos?.nome || 'Bebê';
+    const dataNascimento = dadosSalvos?.dataNascimento || new Date().toISOString().split("T")[0];
+
     const [modalAberto, setModalAberto] = useState(false);
     const [vacinas, setVacinas] = useState<Vacina[]>(() => {
         const vacinasSalvas = JSON.parse(localStorage.getItem('vacinas-noah') || '[]');
         return vacinasSalvas;
     });
 
-    const calcularDiasDeVida = (dataNasc: string) => {
-        const nascimento = new Date(dataNasc);
-        const hoje = new Date();
-        const diferenca = hoje.getTime() - nascimento.getTime();
-        return Math.floor(diferenca / (1000 * 60 * 60 * 24));
-    };
+const [idade, setIdade] = useState(calcularDiasDeVida(dataNascimento));
 
-    const [dias] = useState(calcularDiasDeVida(dataNascimento));
+useEffect(() => {
+    const atualizarIdade = () => setIdade(calcularDiasDeVida(dataNascimento));
+
+    atualizarIdade(); 
+    const intervalo = setInterval(atualizarIdade, 24 * 60 * 60 * 1000); 
+
+    return () => clearInterval(intervalo);
+}, [dataNascimento]);
+
+
 
     const excluirVacina = (index: number) => {
         if (confirm('Tem certeza que deseja excluir esta vacina?')) {
@@ -60,12 +70,11 @@ function Vacinas() {
                     <Syringe className='text-white' size={38} />
                 </div>
                 <div>
-                    <p className='text-xl font-bold text-blue-950'>Vacinas - Noah</p>
-                    <p className='text-blue-950'>{`${dias} dias`}</p>
+                    <p className='text-xl font-bold text-blue-950'>Vacinas - {nomeBebe}</p>
+                    <p className='text-blue-950'>{idade}</p>
                 </div>
             </header>
 
-            {/* Botão para adicionar vacina */}
             <div className='mt-10 '>
                 <button 
                         onClick={() => setModalAberto(true)}
@@ -77,7 +86,6 @@ function Vacinas() {
                     </button>
             </div>
 
-            {/* Vacinas Futuras */}
             <section className='px-3 py-3 mt-10 bg-white rounded-lg shadow-lg'>
                 <div className='flex justify-between items-center'>
                     <p className='text-[22px] flex gap-2 items-center text-blue-950 pt-2'>
@@ -118,7 +126,6 @@ function Vacinas() {
                 )}
             </section>
 
-            {/* Histórico de Vacinas */}
             <section className='px-3 py-3 mt-10 bg-white rounded-lg shadow-lg'>
                 <div className='flex justify-between items-center'>
                     <p className='text-[22px] flex gap-2 items-center text-blue-950 pt-2'>

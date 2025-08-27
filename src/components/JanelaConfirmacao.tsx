@@ -55,7 +55,6 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
         onConfirmar({ tipo, valor, horaRegistro });
         onClose();
 
-        // Limpar campos após confirmar
         setDuracao('');
         setMamilo('');
         setTipoFralda('');
@@ -65,12 +64,10 @@ const JanelaConfirmacao: React.FC<JanelaConfirmacaoProps> = ({
 
     return (
         <>
-            {/* Fundo desfocado */}
             <div
                 className="fixed inset-0 bg-transparent backdrop-blur-sm z-40"
             ></div>
 
-            {/* Modal */}
             <div className="fixed inset-0 flex items-center justify-center z-50 p-5">
                 <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6 space-y-6">
 
