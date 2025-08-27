@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt'],
       manifest: {
-        name: 'Meu App PWA',
-        short_name: 'MeuApp',
-        description: 'Um app PWA feito com Vite',
+        name: 'NanaBem',
+        short_name: 'NanaBem',
+        description: 'Registro rápido de atividades do bebê.',
         theme_color: '#ffffff',
         icons: [
           {
