@@ -11,11 +11,6 @@ import TelaLogin from "../pages/Login";
 function AppRoutes() {
     const [configurado, setConfigurado] = useState<boolean | null>(null);
 
-    useEffect(() => {
-        localStorage.clear();
-    }, []);
-
-
 
     useEffect(() => {
         const appConfigurado = localStorage.getItem("app-configurado") === "true";
