@@ -1,6 +1,5 @@
-
-import { Baby, Calendar, User, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { Baby, Calendar, User, ArrowRight, Download } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface DadosBebe {
     nome: string;
@@ -11,10 +10,33 @@ interface TelaLoginProps {
     onComplete: (dados: DadosBebe) => void;
 }
 
+// Tipagem correta para o evento beforeinstallprompt
+interface BeforeInstallPromptEvent extends Event {
+    prompt: () => Promise<void>;
+    userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+}
+
 export default function TelaLogin({ onComplete }: TelaLoginProps) {
     const [nome, setNome] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
     const [erro, setErro] = useState('');
+
+    // Estados para PWA
+    const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+    const [showInstallButton, setShowInstallButton] = useState(false);
+
+    useEffect(() => {
+        const handler = (e: Event) => {
+            const event = e as BeforeInstallPromptEvent;
+            event.preventDefault();
+            setDeferredPrompt(event);
+            setShowInstallButton(true);
+        };
+
+        window.addEventListener("beforeinstallprompt", handler);
+
+        return () => window.removeEventListener("beforeinstallprompt", handler);
+    }, []);
 
     const validarDados = () => {
         setErro('');
@@ -29,10 +51,10 @@ export default function TelaLogin({ onComplete }: TelaLoginProps) {
             return false;
         }
 
-        const dataSeelecionada = new Date(dataNascimento);
+        const dataSelecionada = new Date(dataNascimento);
         const hoje = new Date();
         
-        if (dataSeelecionada > hoje) {
+        if (dataSelecionada > hoje) {
             setErro('A data de nascimento não pode ser no futuro');
             return false;
         }
@@ -40,7 +62,7 @@ export default function TelaLogin({ onComplete }: TelaLoginProps) {
         const cincoAnosAtras = new Date();
         cincoAnosAtras.setFullYear(hoje.getFullYear() - 5);
         
-        if (dataSeelecionada < cincoAnosAtras) {
+        if (dataSelecionada < cincoAnosAtras) {
             setErro('Data de nascimento muito antiga. Este app é para bebês');
             return false;
         }
@@ -58,6 +80,16 @@ export default function TelaLogin({ onComplete }: TelaLoginProps) {
         }
     };
 
+    const handleInstallClick = async () => {
+        if (!deferredPrompt) return;
+
+        await deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log("Instalação:", outcome);
+        setDeferredPrompt(null);
+        setShowInstallButton(false);
+    };
+
     return (
         <div className="bg-gradient-to-br from-blue-400 via-blue-500 to-purple-600 min-h-screen flex items-center justify-center px-5">
             <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md">
@@ -68,7 +100,6 @@ export default function TelaLogin({ onComplete }: TelaLoginProps) {
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">
                         Bem-vindo!
                     </h1>
-                   
                 </div>
 
                 <div className="space-y-6">
@@ -115,6 +146,16 @@ export default function TelaLogin({ onComplete }: TelaLoginProps) {
                         <span>Começar jornada</span>
                         <ArrowRight size={20} />
                     </button>
+
+                    {showInstallButton && (
+                        <button
+                            onClick={handleInstallClick}
+                            className="w-full mt-3 bg-gradient-to-r from-green-400 to-green-500 text-white font-bold py-3 rounded-xl hover:from-green-500 hover:to-green-600 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        >
+                            <Download size={18} />
+                            <span>Baixar App</span>
+                        </button>
+                    )}
                 </div>
 
                 <div className="text-center mt-6 pt-4 border-t border-gray-100">
