@@ -8,7 +8,7 @@ export function calcularDiasDeVida(dataNascimento: string): string {
 
   let resultado = '';
   if (duracao.years) resultado += `${duracao.years} ano${duracao.years > 1 ? 's' : ''} `;
-  if (duracao.months) resultado += `${duracao.months} mês${duracao.months > 1 ? 'es' : ''} `;
+if (duracao.months) resultado += `${duracao.months} ${duracao.months > 1 ? 'meses' : 'mês'} `;
   if (duracao.days) resultado += `${duracao.days} dia${duracao.days > 1 ? 's' : ''}`;
 
   return resultado.trim() || '0 dias';

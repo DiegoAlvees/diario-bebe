@@ -158,10 +158,9 @@ function Atividades() {
                         </button>
                     </div>
 
-                    {/* Sono - Substituído por dois botões */}
+                    
                     <div className='rounded-md flex justify-center h-20 bg-gradient-to-r from-blue-400 to-blue-500'>
                         <div className="flex h-full w-full">
-                            {/* Dormiu */}
                             <button
                                 onClick={() => {
                                     const agora = new Date();
@@ -179,7 +178,6 @@ function Atividades() {
                                 <p className='text-white text-sm'>Dormiu</p>
                             </button>
 
-                            {/* Acordou */}
                             <button
                                 onClick={() => {
                                     const atividadesAtualizadas = [...atividades];
